@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//Taken from firebase and made to work in our case
 public class EmailPasswordActivity extends Activity {
 
     private static final String TAG = "EmailPassword";
@@ -45,8 +46,6 @@ public class EmailPasswordActivity extends Activity {
                 EditText pass = (EditText)findViewById(R.id.Password);
                 String email2 = email.getText().toString();
                 String pass2 = pass.getText().toString();
-                String email3 = "cis454test@gmail.com";
-                String pass3 = "Password";
                 if(!(email2.isEmpty()) && !(pass2.isEmpty()))
                     signIn(email2, pass2);
 
@@ -116,24 +115,11 @@ public class EmailPasswordActivity extends Activity {
                 });
         // [END sign_in_with_email]
     }
-
-    private void sendEmailVerification() {
-        // Send verification email
-        // [START send_email_verification]
-        final FirebaseUser user = mAuth.getCurrentUser();
-        user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Email sent
-                    }
-                });
-        // [END send_email_verification]
-    }
-
     private void reload() { }
-
     private void updateUI(FirebaseUser user) {
-
+        if(user != null) {
+            Intent intent = new Intent(EmailPasswordActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
