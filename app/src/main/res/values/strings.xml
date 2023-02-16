@@ -3,4 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Info</string>
+    <string name="user">Username</string>
+    <stirng name="password_title">Password</stirng>
+    <string name="login">Login</string>
+    <string name="Register">Register</string>
+    <string name="todo">TODO</string>
+    <string name="password">Password</string>
+    <string name="made_by_konnor_jon_matt_yunjae">Made by: Konnor, Jon, Matt, Yunjae</string>
 </resources>
