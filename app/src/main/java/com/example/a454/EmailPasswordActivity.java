@@ -1,8 +1,13 @@
 package com.example.a454;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,12 +18,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//Taken from firebase and made to work in our case
 public class EmailPasswordActivity extends Activity {
 
     private static final String TAG = "EmailPassword";
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,34 @@ public class EmailPasswordActivity extends Activity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
+        setContentView(R.layout.email_password_activity);
+
+
+        final Button logging = findViewById(R.id.Login);
+        logging.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                EditText email = (EditText)findViewById(R.id.email);
+                EditText pass = (EditText)findViewById(R.id.Password);
+                String email2 = email.getText().toString();
+                String pass2 = pass.getText().toString();
+                if(!(email2.isEmpty()) && !(pass2.isEmpty()))
+                    signIn(email2, pass2);
+
+            }
+        });
+
+        final Button signup = findViewById(R.id.Register);
+        signup.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                EditText email = (EditText)findViewById(R.id.email);
+                EditText pass = (EditText)findViewById(R.id.Password);
+                String email2 = email.getText().toString();
+                String pass2 = pass.getText().toString();
+                if(!(email2.isEmpty()) && !(pass2.isEmpty()))
+                    createAccount(email2, pass2);
+            }
+        });
     }
 
     // [START on_start_check_user]
@@ -38,6 +74,8 @@ public class EmailPasswordActivity extends Activity {
         if(currentUser != null){
             reload();
         }
+
+
     }
     // [END on_start_check_user]
 
@@ -73,6 +111,8 @@ public class EmailPasswordActivity extends Activity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
+                            Toast.makeText(EmailPasswordActivity.this, "Authentication Passed.",
+                                    Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
@@ -86,24 +126,11 @@ public class EmailPasswordActivity extends Activity {
                 });
         // [END sign_in_with_email]
     }
-
-    private void sendEmailVerification() {
-        // Send verification email
-        // [START send_email_verification]
-        final FirebaseUser user = mAuth.getCurrentUser();
-        user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Email sent
-                    }
-                });
-        // [END send_email_verification]
-    }
-
     private void reload() { }
-
     private void updateUI(FirebaseUser user) {
-
+        if(user != null) {
+            Intent intent = new Intent(EmailPasswordActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
