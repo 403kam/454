@@ -51,6 +51,18 @@ public class EmailPasswordActivity extends Activity {
 
             }
         });
+
+        final Button signup = findViewById(R.id.Register);
+        signup.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                EditText email = (EditText)findViewById(R.id.email);
+                EditText pass = (EditText)findViewById(R.id.Password);
+                String email2 = email.getText().toString();
+                String pass2 = pass.getText().toString();
+                if(!(email2.isEmpty()) && !(pass2.isEmpty()))
+                    createAccount(email2, pass2);
+            }
+        });
     }
 
     // [START on_start_check_user]
@@ -109,7 +121,6 @@ public class EmailPasswordActivity extends Activity {
                             Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
-
                         }
                     }
                 });
