@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingActivity">
+
+    <TextView
+        android:id="@+id/settingText"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="#3D43CE"
+        android:text="Setting"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/accountText"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:layout_marginBottom="42dp"
+        android:text="Account"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/friendText"
+        app:layout_constraintStart_toStartOf="@+id/friendText"
+        app:layout_constraintTop_toBottomOf="@+id/settingText" />
+
+    <TextView
+        android:id="@+id/friendText"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:text="Friends"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@+id/gameSettingText"
+        app:layout_constraintTop_toBottomOf="@+id/accountText" />
+
+    <TextView
+        android:id="@+id/gameSettingText"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="Game Setting"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@+id/backtoHomeText"
+        app:layout_constraintTop_toBottomOf="@+id/friendText" />
+
+    <TextView
+        android:id="@+id/backtoHomeText"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="Back to Home"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameSettingText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
