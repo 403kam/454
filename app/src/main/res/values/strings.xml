@@ -3,14 +3,17 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Info</string>
+
     <string name="user">Username</string>
     <string name="password_title">Password</string>
     <string name="login">Login</string>
     <string name="Register">Register</string>
     <string name="todo">TODO</string>
     <string name="password">Password</string>
-    <string name="made_by_konnor_jon_matt_yunjae">Made by: Konnor, Jon, Matt, Yunjae</string>
+    <string name="made_by_konnor_jon_matt_yunjae">Made by: Konnor, Jon, Matt, Yunjae
+        Note: School WIFI blocks database</string>
     <string name="email">Email</string>
+
     <string name="title_activity_setting">SettingActivity</string>
 
     <!-- Preference Titles -->
@@ -24,7 +27,6 @@
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>
