@@ -37,7 +37,10 @@ public class EmailPasswordActivity extends Activity {
         // [END initialize_auth]
 
         setContentView(R.layout.email_password_activity);
-
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
 
         final Button logging = findViewById(R.id.Login);
         logging.setOnClickListener(new View.OnClickListener(){
@@ -48,13 +51,13 @@ public class EmailPasswordActivity extends Activity {
                 String pass2 = pass.getText().toString();
                 if(!(email2.isEmpty()) && !(pass2.isEmpty()))
                     signIn(email2, pass2);
-
             }
         });
 
         final Button signup = findViewById(R.id.Register);
         signup.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
                 EditText email = (EditText)findViewById(R.id.email);
                 EditText pass = (EditText)findViewById(R.id.Password);
                 String email2 = email.getText().toString();
@@ -65,19 +68,7 @@ public class EmailPasswordActivity extends Activity {
         });
     }
 
-    // [START on_start_check_user]
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            reload();
-        }
 
-
-    }
-    // [END on_start_check_user]
 
     private void createAccount(String email, String password) {
         // [START create_user_with_email]
@@ -88,6 +79,8 @@ public class EmailPasswordActivity extends Activity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            Toast.makeText(EmailPasswordActivity.this, "Authentication Passed.",
+                                    Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
