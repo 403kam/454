@@ -21,6 +21,7 @@ public class EmailPasswordActivity extends Activity {
 
     private static final String TAG = "EmailPassword";
     private FirebaseAuth mAuth;
+    private static final String bypass = "454";
 
     //When app boots up this will be the first screen
     @Override
@@ -42,10 +43,16 @@ public class EmailPasswordActivity extends Activity {
             public void onClick(View v){
                 String email = ((EditText)findViewById(R.id.email)).getText().toString();
                 String pass = ((EditText)findViewById(R.id.Password)).getText().toString();
-                if(!(email.isEmpty()) && !(pass.isEmpty()))
+
+                //special if statement to bypass school wifi
+                if(email.equals(bypass) && pass.equals(bypass))
+                    updateUI(currentUser);
+
+                //Move on with normal if statement
+                else if(!(email.isEmpty()) && !(pass.isEmpty()))
                     createAccount(email, pass);
                 else
-                    Toast.makeText(EmailPasswordActivity.this, "Authentication Passed.",
+                    Toast.makeText(EmailPasswordActivity.this, "Authentication Failed.",
                             Toast.LENGTH_SHORT).show();
             }
         });
@@ -59,7 +66,7 @@ public class EmailPasswordActivity extends Activity {
                 if(!(email.isEmpty()) && !(pass.isEmpty()))
                     signIn(email, pass);
                 else
-                    Toast.makeText(EmailPasswordActivity.this, "Authentication Passed.",
+                    Toast.makeText(EmailPasswordActivity.this, "Authentication Failed.",
                             Toast.LENGTH_SHORT).show();
             }
         });
