@@ -34,8 +34,8 @@ public class EmailPasswordActivity extends Activity {
 
         //If user is saved just move to main activity
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null)
-            updateUI(currentUser);
+        //if(currentUser != null)
+        //    updateUI(currentUser);
 
         //When login button is pressed get data to database
         final Button logging = findViewById(R.id.Login);
