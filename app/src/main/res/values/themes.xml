@@ -17,6 +17,5 @@
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowBackground">@drawable/icon_center</item>
-
     </style>
 </resources>
