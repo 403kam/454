@@ -46,7 +46,7 @@ public class EmailPasswordActivity extends Activity {
 
                 //special if statement to bypass school wifi
                 if(email.equals(bypass) && pass.equals(bypass))
-                    updateUI(currentUser);
+                    updating();
 
                 //Move on with normal if statement
                 else if(!(email.isEmpty()) && !(pass.isEmpty()))
@@ -127,6 +127,10 @@ public class EmailPasswordActivity extends Activity {
     }//end signIn
 
     //Move on to main activity
+    private void updating() {
+        Intent intent = new Intent(EmailPasswordActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
     private void updateUI(FirebaseUser user) {
         if(user != null) {
             Intent intent = new Intent(EmailPasswordActivity.this, MainActivity.class);
