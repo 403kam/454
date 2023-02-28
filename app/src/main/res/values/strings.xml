@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Tune Guesser</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Info</string>
 
     <string name="user">Username</string>
     <string name="password_title">Password</string>
