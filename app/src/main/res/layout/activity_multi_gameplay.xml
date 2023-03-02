@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".multiGameplay">
+
+    <TextView
+        android:id="@+id/scoreText2"
+        android:layout_width="108dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="70dp"
+        android:text="Score: 0"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1Button" />
+
+    <TextView
+        android:id="@+id/scoreText3"
+        android:layout_width="108dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="45dp"
+        android:text="Score: 0"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player2Button" />
+
+    <ImageView
+        android:id="@+id/musicButton2"
+        android:layout_width="224dp"
+        android:layout_height="246dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="68dp"
+        android:background="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo5"
+        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
+
+    <ImageView
+        android:id="@+id/logo5"
+        android:layout_width="106dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_launcher_background"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/player1Button"
+        android:layout_width="169dp"
+        android:layout_height="163dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="41dp"
+        android:text="Player1"
+        app:layout_constraintEnd_toStartOf="@+id/player2Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/musicButton2" />
+
+    <Button
+        android:id="@+id/player2Button"
+        android:layout_width="169dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="16dp"
+        android:text="Player2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/musicButton2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
