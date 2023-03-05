@@ -50,7 +50,7 @@ public class EmailPasswordActivity extends Activity {
 
                 //Move on with normal if statement
                 else if(!(email.isEmpty()) && !(pass.isEmpty()))
-                    createAccount(email, pass);
+                    signIn(email, pass);
                 else
                     Toast.makeText(EmailPasswordActivity.this, "Authentication Failed.",
                             Toast.LENGTH_SHORT).show();
@@ -64,7 +64,7 @@ public class EmailPasswordActivity extends Activity {
                 String email = ((EditText)findViewById(R.id.email)).getText().toString();
                 String pass = ((EditText)findViewById(R.id.Password)).getText().toString();
                 if(!(email.isEmpty()) && !(pass.isEmpty()))
-                    signIn(email, pass);
+                    createAccount(email, pass);
                 else
                     Toast.makeText(EmailPasswordActivity.this, "Authentication Failed.",
                             Toast.LENGTH_SHORT).show();
