@@ -9,6 +9,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import android.content.Intent;
+import android.view.View;
+
 
 import com.example.a454.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+    }
+
+    public void onPlayGameClick(View view) {
+        Intent intent = new Intent(this, GuessActivity.class);
+        startActivity(intent);
     }
     /*
     @Override
