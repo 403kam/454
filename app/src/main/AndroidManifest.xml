@@ -48,6 +48,10 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="" />
+        <activity
+            android:name=".GuessActivity"
+            android:exported="true"
+            android:label="" />
     </application>
 
 </manifest>

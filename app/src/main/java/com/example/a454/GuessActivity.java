@@ -2,11 +2,15 @@ package com.example.a454;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.media.MediaPlayer;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -21,8 +25,9 @@ import java.util.List;
 public class GuessActivity extends AppCompatActivity {
 
     private ImageButton playPauseButton;
+    private Button guessButton;
     private MediaPlayer mediaPlayer;
-    private String musicDirectory = "Music/";
+    private String musicDirectory = "/Music/00's Pop/";
     private List<String> songNames = Arrays.asList("Kanye West  Stronger-[AudioTrimmer.com].mp3", "Coldplay  Viva La Vida Official Video-[AudioTrimmer.com].mp3", "Kelly Clarkson  Since U Been Gone VIDEO-[AudioTrimmer.com].mp3");
     private int currentSongIndex = 0;
 
@@ -33,6 +38,31 @@ public class GuessActivity extends AppCompatActivity {
 
         // Find the play/pause button by ID
         playPauseButton = findViewById(R.id.play_pause_button);
+        playPauseButton.setImageResource(R.drawable.pause);
+        guessButton = findViewById(R.id.guess_button);
+
+        playPauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+                    // Change the button icon to "play"
+                    playPauseButton.setImageResource(R.drawable.play);
+                } else {
+                    mediaPlayer.start();
+                    // Change the button icon to "pause"
+                    playPauseButton.setImageResource(R.drawable.pause);
+                }
+            }
+        });
+
+        guessButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guessCheck();
+            }
+        });
 
         // Play the first song in the list
         playSong();
@@ -40,7 +70,8 @@ public class GuessActivity extends AppCompatActivity {
 
     private void playSong() {
         // Get a reference to the current song in the list
-        StorageReference songRef = FirebaseStorage.getInstance().getReference().child(musicDirectory + songNames.get(currentSongIndex));
+        String song = musicDirectory + songNames.get(currentSongIndex);
+        StorageReference songRef = FirebaseStorage.getInstance().getReference().child(song);
 
         // Get the download URL for the song
         songRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -74,15 +105,24 @@ public class GuessActivity extends AppCompatActivity {
         playSong();
     }
 
+    public void guessCheck() {
+        EditText guessEditText = findViewById(R.id.guess_edittext);
+        String userGuess = guessEditText.getText().toString();
 
-    public void onPlayPauseButtonClick(View view) {
-        // Switch the image resource and tag depending on the current state
-        if (playPauseButton.getTag() == null || playPauseButton.getTag().equals("play")) {
-            playPauseButton.setImageResource(R.drawable.pause);
-            playPauseButton.setTag("pause");
+        String correctAnswer = "stronger"; // change to your correct answer
+
+        // convert user's guess to lowercase and remove leading/trailing white space
+        userGuess = userGuess.trim().toLowerCase();
+
+        // compare formattedGuess to the correctAnswer and return true if they match
+        TextView resultText = findViewById(R.id.result_textview);
+        boolean result = userGuess.equals(correctAnswer.toLowerCase());
+        if (result) {
+            resultText.setText("Correct");
         } else {
-            playPauseButton.setImageResource(R.drawable.play);
-            playPauseButton.setTag("play");
+            resultText.setText("Wrong");
         }
+
     }
+
 }
