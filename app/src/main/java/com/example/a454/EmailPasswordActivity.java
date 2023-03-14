@@ -15,6 +15,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 //Taken from firebase and made to work in our application
 public class EmailPasswordActivity extends Activity {
@@ -86,6 +90,17 @@ public class EmailPasswordActivity extends Activity {
                             Toast.makeText(EmailPasswordActivity.this, "Authentication Passed.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            //Add new user to database for score
+                            FirebaseFirestore newsuser = FirebaseFirestore.getInstance();
+                            Map<String, Object> newscore = new HashMap<>();
+                            newscore.put("score", 0);
+                            String name = email.split("@")[0];
+                            newscore.put("name", name);
+                            String uids = user.getUid();
+                            newsuser.collection("Leaderboard").document(uids).set(newscore);
+
+                            //Move on
                             updateUI(user);
                         } else {
 
