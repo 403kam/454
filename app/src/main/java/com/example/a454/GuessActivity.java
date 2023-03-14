@@ -28,6 +28,7 @@ import java.util.Random;
 
 public class GuessActivity extends AppCompatActivity {
 
+    private int score = 0;
     private ImageButton playPauseButton;
     private Button guessButton;
     private MediaPlayer mediaPlayer;
@@ -175,15 +176,13 @@ public class GuessActivity extends AppCompatActivity {
         boolean result = userGuess.equals(correctAnswer.toLowerCase());
         if (result) {
             resultText.setText("Correct");
-            String tempText = points.getText().toString();
-            Integer tempInt = Integer.parseInt(tempText);
-            points.setText(String.valueOf(tempInt + 10));
+            score += 10;
+            points.setText(String.valueOf(score));
             nextSong();
         } else {
             resultText.setText("Wrong");
-            String tempText = points.getText().toString();
-            Integer tempInt = Integer.parseInt(tempText);
-            points.setText(String.valueOf(tempInt - 1));
+            score -= 1;
+            points.setText(String.valueOf(score));
         }
 
     }
