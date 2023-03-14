@@ -29,9 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Will changed based on what needs to be shown
     public void onPlayGameClick(View view) {
-        Intent intent = new Intent(this, friend.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
     /*

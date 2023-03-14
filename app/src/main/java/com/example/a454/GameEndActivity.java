@@ -18,7 +18,7 @@ public class GameEndActivity extends AppCompatActivity {
 
     }
 
-    public void onPlayGameClick(View view) {
+    public void onHomeClick(View view) {
         finish();
     }
 }
