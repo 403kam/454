@@ -52,6 +52,10 @@
             android:name=".GuessActivity"
             android:exported="true"
             android:label="" />
+        <activity
+            android:name=".GameEndActivity"
+            android:exported="true"
+            android:label="" />
     </application>
 
 </manifest>

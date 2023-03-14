@@ -2,6 +2,7 @@ package com.example.a454;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,8 +28,18 @@ public class GuessActivity extends AppCompatActivity {
     private ImageButton playPauseButton;
     private Button guessButton;
     private MediaPlayer mediaPlayer;
-    private String musicDirectory = "/Music/00's Pop/";
-    private List<String> songNames = Arrays.asList("Kanye West  Stronger-[AudioTrimmer.com].mp3", "Coldplay  Viva La Vida Official Video-[AudioTrimmer.com].mp3", "Kelly Clarkson  Since U Been Gone VIDEO-[AudioTrimmer.com].mp3");
+    private String popDirectory = "/Music/00's Pop/";
+    private String jazzDirectory = "/Music/Jazz/";
+    private String rockDirectory = "/Music/Rock/";
+    private List<String> popSongs = Arrays.asList("Kanye West  Stronger-[AudioTrimmer.com].mp3", "Coldplay  Viva La Vida Official Video-[AudioTrimmer.com].mp3", "Kelly Clarkson  Since U Been Gone VIDEO-[AudioTrimmer.com].mp3", "Lady Gaga  Poker Face Official Music Video-[AudioTrimmer.com].mp3", "Rihanna  Dont Stop The Music-[AudioTrimmer.com].mp3");
+    private List<String> popAnswers = Arrays.asList("stronger", "viva la vida", "since u been gone", "poker face", "dont stop the music");
+
+    private List<String> jazzSongs = Arrays.asList("Frank Sinatra  Fly Me To The Moon Live At The Kiel Opera House St Louis MO1965.mp3", "Kenny G  The Moment Official Video.mp3", "Louis Armstrong  La Vie En Rose 1950 Digitally Remastered.mp3", "Louis Armstrong  What A Wonderful World.mp3", "Sade  Smooth Operator  Official  1984.mp3");
+    private List<String> jazzAnswers = Arrays.asList("fly me to the moon", "the moment", "la vie en rose", "what a wonderful world", "smooth operator");
+
+    private List<String> rockSongs = Arrays.asList("BAD TO THE BONE.mp3", "Bon Jovi  Livin On A Prayer.mp3", "Guns N Roses  Sweet Child O Mine Official Music Video.mp3", "KISS  I Was Made For Loving You.mp3", "Survivor  Eye Of The Tiger Official HD Video.mp3");
+    private List<String> rockAnswers = Arrays.asList("bad to the bone", "livin on a prayer", "sweet child o mine", "i was made for loving you", "eye of the tiger");
+
     private int currentSongIndex = 0;
 
     @Override
@@ -70,7 +81,7 @@ public class GuessActivity extends AppCompatActivity {
 
     private void playSong() {
         // Get a reference to the current song in the list
-        String song = musicDirectory + songNames.get(currentSongIndex);
+        String song = popDirectory + popSongs.get(currentSongIndex);
         StorageReference songRef = FirebaseStorage.getInstance().getReference().child(song);
 
         // Get the download URL for the song
@@ -78,6 +89,7 @@ public class GuessActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Uri uri) {
                 // Play the song using a media player
+                playPauseButton.setImageResource(R.drawable.pause);
                 try {
                     mediaPlayer = new MediaPlayer();
                     mediaPlayer.setDataSource(uri.toString());
@@ -97,9 +109,14 @@ public class GuessActivity extends AppCompatActivity {
 
         // Increment the current song index
         currentSongIndex++;
-        if (currentSongIndex >= songNames.size()) {
+        if (currentSongIndex >= popSongs.size()) {
             currentSongIndex = 0;
         }
+
+        TextView resultText = findViewById(R.id.result_textview);
+        EditText textEntry = findViewById(R.id.guess_edittext);
+        resultText.setText("New Song");
+        textEntry.setText("");
 
         // Play the next song in the list
         playSong();
@@ -109,20 +126,39 @@ public class GuessActivity extends AppCompatActivity {
         EditText guessEditText = findViewById(R.id.guess_edittext);
         String userGuess = guessEditText.getText().toString();
 
-        String correctAnswer = "stronger"; // change to your correct answer
+        String correctAnswer = popAnswers.get(currentSongIndex); // change to your correct answer
 
         // convert user's guess to lowercase and remove leading/trailing white space
         userGuess = userGuess.trim().toLowerCase();
 
         // compare formattedGuess to the correctAnswer and return true if they match
         TextView resultText = findViewById(R.id.result_textview);
+        TextView points = findViewById(R.id.points_text);
         boolean result = userGuess.equals(correctAnswer.toLowerCase());
         if (result) {
             resultText.setText("Correct");
+            String tempText = points.getText().toString();
+            Integer tempInt = Integer.parseInt(tempText);
+            points.setText(String.valueOf(tempInt + 10));
+            nextSong();
         } else {
             resultText.setText("Wrong");
+            String tempText = points.getText().toString();
+            Integer tempInt = Integer.parseInt(tempText);
+            points.setText(String.valueOf(tempInt - 1));
         }
 
+    }
+
+    public void onDoneClick(View view) {
+        // Stop playing the current song
+        mediaPlayer.stop();
+        mediaPlayer.release();
+
+        finish();
+
+        Intent intent = new Intent(this, GameEndActivity.class);
+        startActivity(intent);
     }
 
 }
