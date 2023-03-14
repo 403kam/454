@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onPlayGameClick(View view) {
-        Intent intent = new Intent(this, GuessActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
     /*
