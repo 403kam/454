@@ -1,5 +1,6 @@
 package com.example.a454;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,16 +14,22 @@ import android.widget.ImageButton;
 import android.media.MediaPlayer;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -191,20 +198,43 @@ public class GuessActivity extends AppCompatActivity {
         // Stop playing the current song
         mediaPlayer.stop();
         mediaPlayer.release();
-
+        uploadScore();
         finish();
 
-        Intent intent = new Intent(this, GameEndActivity.class);
+        //Intent intent = new Intent(this, GameEndActivity.class);
+        //Intent intent = new Intent(this, friend.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void downloadScore() {
-        // download score from firebase based on the userID
-    }
     public void uploadScore() {
         // after game ended:
         // if score > high_score:
             // upload score to database
+        FirebaseFirestore ls = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uids = user.getUid();
+        DocumentReference docRef = ls.collection("Leaderboard").document(uids);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    String them = String.valueOf((document.getData()).get("score"));
+                    int num = Integer.valueOf(them);
+                    if(score > num) {
+                        Map<String, Object> scores = new HashMap<>();
+                        scores.put("score", score);
+                        String email = user.getEmail();
+                        String name = email.split("@")[0];
+                        scores.put("name", name);
+                        ls.collection("Leaderboard").document(uids).set(scores);
+                    }
+                }
+            }
+        });
+
     }
 
 }

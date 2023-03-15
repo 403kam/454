@@ -43,7 +43,8 @@
         android:text="LeaderBoard"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playGameMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/playGameMessage"
+        android:onClick="onLeaderBoardClick"/>
 
     <TextView
         android:id="@+id/playGameMessage"
