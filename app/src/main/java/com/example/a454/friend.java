@@ -64,12 +64,16 @@ public class friend extends AppCompatActivity {
                             ArrayList<String> al = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 String us = String.valueOf((document.getData()).get("score"));
+                                if(us.length() == 1){
+                                    us = "0" + us;
+                                }
                                 String nameing = String.valueOf((document.getData().get("name")));
                                 String white = " ";
                                 String end = "";
                                 end = us + white + nameing;
                                 al.add(end);
                             }
+                            //7 is higher then 10 since 7 is higher then 1! Does not work!
                             al.sort(Comparator.reverseOrder());
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(friend.this, android.R.layout.simple_list_item_1, al);
                             ListView bl = findViewById(R.id.leaderboard);
@@ -85,32 +89,6 @@ public class friend extends AppCompatActivity {
                 //will change later in development
                 updating();
                 //adding(5);
-            }
-        });
-    }
-
-    //Change score
-    private void adding(int added){
-        FirebaseFirestore ls = FirebaseFirestore.getInstance();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uids = user.getUid();
-        DocumentReference docRef = ls.collection("Leaderboard").document(uids);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    String them = String.valueOf((document.getData()).get("score"));
-                    int num = Integer.valueOf(them);
-                    int newScore = num + added;
-                    Map<String, Object> scores = new HashMap<>();
-                    scores.put("score", newScore);
-                    String email = user.getEmail();
-                    String name = email.split("@")[0];
-                    scores.put("name", name);
-                    ls.collection("Leaderboard").document(uids).set(scores);
-                }
             }
         });
     }
