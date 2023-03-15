@@ -201,9 +201,8 @@ public class GuessActivity extends AppCompatActivity {
         uploadScore();
         finish();
 
-        //Intent intent = new Intent(this, GameEndActivity.class);
-        //Intent intent = new Intent(this, friend.class);
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, GameEndActivity.class);
+        intent.putExtra("score", score);
         startActivity(intent);
     }
 
