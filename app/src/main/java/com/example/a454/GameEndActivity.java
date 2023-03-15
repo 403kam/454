@@ -25,23 +25,12 @@ public class GameEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_end);
+        Intent intent = getIntent();
+        int score = intent.getIntExtra("score", 0);
+        TextView score_text = findViewById(R.id.scoreTextView);
+        score_text.setText("Score: " + Integer.toString(score));
 
-        FirebaseFirestore ls = FirebaseFirestore.getInstance();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uids = user.getUid();
-        DocumentReference docRef = ls.collection("Leaderboard").document(uids);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    TextView scoreText = (TextView)findViewById(R.id.scoreTextView);
-                    String them = "Score: " + (document.getData()).get("score");
-                    scoreText.setText(them);
-                }
-            }
-        });
+
     }
 
     public void onHomeClick(View view) {
