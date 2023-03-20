@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue"
     tools:context=".singleGameplay">
 
     <ImageView
         android:id="@+id/logo3"
-        android:layout_width="106dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="152dp"
+        android:layout_width="383dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/todo"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/screen_shot_2023_03_06_at_6_12_13_pm"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,26 +23,30 @@
         android:id="@+id/musicButton"
         android:layout_width="224dp"
         android:layout_height="246dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="32dp"
         android:background="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo3"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
+        app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
+        android:contentDescription="Music Player" />
 
     <EditText
         android:id="@+id/answerText"
         android:layout_width="242dp"
         android:layout_height="63dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="85dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Answer"
+        android:textColor="@color/pale"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musicButton" />
+        app:layout_constraintTop_toBottomOf="@+id/musicButton"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/scoreText"
