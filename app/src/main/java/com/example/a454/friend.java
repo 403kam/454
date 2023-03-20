@@ -43,7 +43,7 @@ public class friend extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         String uids = user.getUid();
         DocumentReference docRef = ls.collection("Leaderboard").document(uids);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        /*docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()) {
@@ -53,7 +53,7 @@ public class friend extends AppCompatActivity {
                     scoreText.setText(them);
                 }
             }
-        });
+        });*/
 
         //load total scoreboard
         ls.collection("Leaderboard").get()
@@ -83,14 +83,14 @@ public class friend extends AppCompatActivity {
                 });
 
         //Move back to main menu
-        final Button leave = findViewById(R.id.menu);
-        leave.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        //final Button leave = findViewById(R.id.menu);
+        //leave.setOnClickListener(new View.OnClickListener(){
+        //    public void onClick(View v){
                 //will change later in development
-                updating();
+        //        updating();
                 //adding(5);
-            }
-        });
+        //    }
+        //});
     }
 
     //when back button pressed just move on
