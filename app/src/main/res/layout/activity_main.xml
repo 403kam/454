@@ -45,7 +45,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/pale"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playGameMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/playGameMessage"
+        android:onClick="onLeaderBoardClick"/>
 
     <Button
         android:id="@+id/playGameMessage"

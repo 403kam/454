@@ -30,4 +30,7 @@
 
     <string name="guess_button">Guess!</string>
     <string name="next_button">Next Song</string>
+    <string name="leaderboard">LeaderBoard</string>
+    <string name="menu">Menu</string>
+    <string name="score">score</string>
 </resources>
