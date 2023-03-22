@@ -11,7 +11,7 @@
     <string name="made_by_konnor_jon_matt_yunjae">Made by: Konnor, Jon, Matt, Yunjae</string>
     <string name="email">Email</string>
     <string name="empty"> </string>
-
+    <string name="leaderboard">Leaderboard</string>
     <string name="title_activity_setting">SettingActivity</string>
 
     <!-- Preference Titles -->
