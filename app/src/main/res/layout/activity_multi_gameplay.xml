@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".multiGameplay">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="70dp"
         android:text="Score: 0"
+
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +27,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="45dp"
         android:text="Score: 0"
+
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +39,7 @@
         android:layout_height="246dp"
         android:layout_marginStart="93dp"
         android:layout_marginTop="68dp"
+
         android:background="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo5"
@@ -49,6 +53,7 @@
         android:layout_marginTop="16dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_launcher_background"
+
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +66,7 @@
         android:layout_marginTop="84dp"
         android:layout_marginEnd="41dp"
         android:text="Player1"
+
         app:layout_constraintEnd_toStartOf="@+id/player2Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/musicButton2" />

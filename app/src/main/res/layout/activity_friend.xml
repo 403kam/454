@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
+    android:background="@color/blue"
     android:layout_height="match_parent"
     tools:context=".friend">
 
@@ -12,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="109dp"
         android:layout_marginTop="15dp"
+
         android:text="@string/leaderboard"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -26,6 +29,7 @@
         android:layout_marginTop="16dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_launcher_background"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,5 +70,4 @@
         android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

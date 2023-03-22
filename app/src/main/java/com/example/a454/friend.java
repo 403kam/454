@@ -43,6 +43,7 @@ public class friend extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         String uids = user.getUid();
         DocumentReference docRef = ls.collection("Leaderboard").document(uids);
+
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -91,6 +92,7 @@ public class friend extends AppCompatActivity {
                 //adding(5);
             }
         });
+
     }
 
     //when back button pressed just move on
