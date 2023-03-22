@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+
     tools:context=".multiGameplay">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="70dp"
         android:text="Score: 0"
-        android:textColor="@color/pale"
+
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="45dp"
         android:text="Score: 0"
-        android:textColor="@color/pale"
+
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,9 @@
         android:id="@+id/musicButton2"
         android:layout_width="224dp"
         android:layout_height="246dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="68dp"
+
         android:background="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo5"
@@ -46,12 +47,13 @@
 
     <ImageView
         android:id="@+id/logo5"
-        android:layout_width="264dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="72dp"
+        android:layout_width="106dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="152dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/todo"
-        android:src="@drawable/screen_shot_2023_03_06_at_6_12_13_pm"
+        android:src="@drawable/ic_launcher_background"
+
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +66,7 @@
         android:layout_marginTop="84dp"
         android:layout_marginEnd="41dp"
         android:text="Player1"
-        android:textColor="@color/pale"
+
         app:layout_constraintEnd_toStartOf="@+id/player2Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/musicButton2" />
@@ -76,7 +78,6 @@
         android:layout_marginTop="84dp"
         android:layout_marginEnd="16dp"
         android:text="Player2"
-        android:textColor="@color/pale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/musicButton2" />
 
