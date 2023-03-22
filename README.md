@@ -11,6 +11,6 @@
 # 7. Try the application out
 #
 # Outline of application:
-# A login/register page starts after splashscreen
-# Pick to play game or see leaderboard
-# Pick game mode to play. Which will let user play and get a higher score
+# * A login/register page starts after splashscreen
+# * Pick to play game or see leaderboard
+# * Pick game mode to play. Which will let user play and get a higher score
