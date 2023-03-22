@@ -16,9 +16,6 @@
             android:name=".friend"
             android:exported="false" />
         <activity
-            android:name=".account"
-            android:exported="false" />
-        <activity
             android:name=".multiGameplay"
             android:exported="false" />
         <activity
