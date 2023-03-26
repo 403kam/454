@@ -10,7 +10,7 @@ This repository contains the code for a mobile application developed as a part o
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
+- [Answer Key](#answer-key)
 
 ### Installation
 
@@ -31,6 +31,22 @@ The mobile application consists of the following pages and features:
 * Options to play a game or see the leaderboard
 * Game mode selection to let the user play and get a higher score.
 
-### Contributing
+### Answer Key
 
-Instructions on how to contribute to the project.
+Here is the list of answers for the quiz in the mobile application:
+
+- stronger
+- viva la vida
+- since u been gone
+- poker face
+- dont stop the music
+- fly me to the moon
+- the moment
+- la vie en rose
+- what a wonderful world
+- smooth operator
+- bad to the bone
+- livin on a prayer
+- sweet child o mine
+- i was made for loving you
+- eye of the tiger
