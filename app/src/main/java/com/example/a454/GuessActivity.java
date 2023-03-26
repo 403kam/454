@@ -86,7 +86,7 @@ public class GuessActivity extends AppCompatActivity {
     private List<String> randomAnswers = Arrays.asList(
             "stronger",
             "viva la vida",
-            "Since u been gone",
+            "since u been gone",
             "poker face",
             "dont stop the music",
             "fly me to the moon",
