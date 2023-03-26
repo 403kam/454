@@ -4,7 +4,8 @@
     <string name="password_title">Password</string>
     <string name="login">Login</string>
     <string name="Register">Register</string>
-    <string name="todo">TODO</string>
+    <string name="todo">todo</string>
+    <string name="Motto">Guess that tune</string>
     <string name="password">Password</string>
     <string name="made_by_konnor_jon_matt_yunjae">Made by: Konnor, Jon, Matt, Yunjae</string>
     <string name="email">Email</string>

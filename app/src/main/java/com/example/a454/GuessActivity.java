@@ -39,16 +39,31 @@ public class GuessActivity extends AppCompatActivity {
     private ImageButton playPauseButton;
     private Button guessButton;
     private MediaPlayer mediaPlayer;
-    private String popDirectory = "/Music/00's Pop/";
-    private String jazzDirectory = "/Music/Jazz/";
-    private String rockDirectory = "/Music/Rock/";
-    private List<String> popSongs = Arrays.asList("Kanye West  Stronger-[AudioTrimmer.com].mp3", "Coldplay  Viva La Vida Official Video-[AudioTrimmer.com].mp3", "Kelly Clarkson  Since U Been Gone VIDEO-[AudioTrimmer.com].mp3", "Lady Gaga  Poker Face Official Music Video-[AudioTrimmer.com].mp3", "Rihanna  Dont Stop The Music-[AudioTrimmer.com].mp3");
+    private String genre;
+    private List<String> songs;
+    private List<String> answers;
+    private List<String> popSongs = Arrays.asList(
+            "/Music/00's Pop/Kanye West  Stronger-[AudioTrimmer.com].mp3",
+            "/Music/00's Pop/Coldplay  Viva La Vida Official Video-[AudioTrimmer.com].mp3",
+            "/Music/00's Pop/Kelly Clarkson  Since U Been Gone VIDEO-[AudioTrimmer.com].mp3",
+            "/Music/00's Pop/Lady Gaga  Poker Face Official Music Video-[AudioTrimmer.com].mp3",
+            "/Music/00's Pop/Rihanna  Dont Stop The Music-[AudioTrimmer.com].mp3");
     private List<String> popAnswers = Arrays.asList("stronger", "viva la vida", "since u been gone", "poker face", "dont stop the music");
 
-    private List<String> jazzSongs = Arrays.asList("Frank Sinatra  Fly Me To The Moon Live At The Kiel Opera House St Louis MO1965.mp3", "Kenny G  The Moment Official Video.mp3", "Louis Armstrong  La Vie En Rose 1950 Digitally Remastered.mp3", "Louis Armstrong  What A Wonderful World.mp3", "Sade  Smooth Operator  Official  1984.mp3");
+    private List<String> jazzSongs = Arrays.asList(
+            "/Music/Jazz/Frank Sinatra  Fly Me To The Moon Live At The Kiel Opera House St Louis MO1965.mp3",
+            "/Music/Jazz/Kenny G  The Moment Official Video.mp3",
+            "/Music/Jazz/Louis Armstrong  La Vie En Rose 1950 Digitally Remastered.mp3",
+            "/Music/Jazz/Louis Armstrong  What A Wonderful World.mp3",
+            "/Music/Jazz/Sade  Smooth Operator  Official  1984.mp3");
     private List<String> jazzAnswers = Arrays.asList("fly me to the moon", "the moment", "la vie en rose", "what a wonderful world", "smooth operator");
 
-    private List<String> rockSongs = Arrays.asList("BAD TO THE BONE.mp3", "Bon Jovi  Livin On A Prayer.mp3", "Guns N Roses  Sweet Child O Mine Official Music Video.mp3", "KISS  I Was Made For Loving You.mp3", "Survivor  Eye Of The Tiger Official HD Video.mp3");
+    private List<String> rockSongs = Arrays.asList(
+            "/Music/Rock/BAD TO THE BONE.mp3",
+            "/Music/Rock/Bon Jovi  Livin On A Prayer.mp3",
+            "/Music/Rock/Guns N Roses  Sweet Child O Mine Official Music Video.mp3",
+            "/Music/Rock/KISS  I Was Made For Loving You.mp3",
+            "/Music/Rock/Survivor  Eye Of The Tiger Official HD Video.mp3");
     private List<String> rockAnswers = Arrays.asList("bad to the bone", "livin on a prayer", "sweet child o mine", "i was made for loving you", "eye of the tiger");
 
     private List<String> randomSongs = Arrays.asList(
@@ -71,7 +86,7 @@ public class GuessActivity extends AppCompatActivity {
     private List<String> randomAnswers = Arrays.asList(
             "stronger",
             "viva la vida",
-            "Since u been gone",
+            "since u been gone",
             "poker face",
             "dont stop the music",
             "fly me to the moon",
@@ -91,6 +106,22 @@ public class GuessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_guess);
+        Intent intent = getIntent();
+        genre = intent.getStringExtra("genre");
+
+        if (genre.equals("pop")) {
+            songs = popSongs;
+            answers = popAnswers;
+        } else if (genre.equals("rock")) {
+            songs = rockSongs;
+            answers = rockAnswers;
+        } else if (genre.equals("jazz")) {
+            songs = jazzSongs;
+            answers = jazzAnswers;
+        } else {
+            songs = randomSongs;
+            answers = randomAnswers;
+        }
 
         // Find the play/pause button by ID
         playPauseButton = findViewById(R.id.play_pause_button);
@@ -126,8 +157,8 @@ public class GuessActivity extends AppCompatActivity {
 
     private void playSong() {
         Random random = new Random();
-        currentSongIndex = random.nextInt(randomSongs.size());
-        String song = randomSongs.get(currentSongIndex);
+        currentSongIndex = random.nextInt(songs.size());
+        String song = songs.get(currentSongIndex);
         StorageReference songRef = FirebaseStorage.getInstance().getReference().child(song);
 
         // Get the download URL for the song
@@ -172,7 +203,7 @@ public class GuessActivity extends AppCompatActivity {
         EditText guessEditText = findViewById(R.id.guess_edittext);
         String userGuess = guessEditText.getText().toString();
 
-        String correctAnswer = randomAnswers.get(currentSongIndex); // change to your correct answer
+        String correctAnswer = answers.get(currentSongIndex); // change to your correct answer
 
         // convert user's guess to lowercase and remove leading/trailing white space
         userGuess = userGuess.trim().toLowerCase();

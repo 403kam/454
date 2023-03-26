@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
+
     tools:context=".GameActivity">
 
     <ImageView
@@ -14,6 +15,7 @@
         android:layout_marginTop="48dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_launcher_background"
+
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -27,6 +29,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="casual"
         android:text="@string/app_name"
+
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -40,9 +43,10 @@
         android:layout_width="162dp"
         android:layout_height="70dp"
         android:layout_marginTop="22dp"
-        android:text="Select the Game Mode"
+        android:text="Select the Music Genre:"
         android:textAlignment="center"
         android:textColor="@color/black"
+
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,26 +54,55 @@
         app:layout_constraintTop_toBottomOf="@+id/appname4" />
 
     <Button
-        android:id="@+id/singlePlayerButton"
+        android:id="@+id/randomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="63dp"
-        android:text="Single Mode"
+        android:text="Random"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameModeSelectMessage"
-        android:onClick="onSingleModeClick"/>
+        android:onClick="onRandomClick"/>
 
     <Button
-        android:id="@+id/multiPlayerButton"
+        android:id="@+id/popButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
-        android:text="Multi Mode"
+        android:text="Pop"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/singlePlayerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/randomButton"
+        android:onClick="onPopClick"/>
+
+    <Button
+        android:id="@+id/rockButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="Rock"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popButton"
+        android:onClick="onRockClick"/>
+
+    <Button
+        android:id="@+id/jazzButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="Jazz"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rockButton"
+        android:onClick="onJazzClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
