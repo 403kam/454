@@ -38,13 +38,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, friend.class);
         startActivity(intent);
     }
-
-    /*
-    @Override
-    public void onStart() {
-        super.onStart();
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-    }
-     */
 }

@@ -49,11 +49,11 @@ public class EmailPasswordActivity extends Activity {
                 String pass = ((EditText)findViewById(R.id.Password)).getText().toString();
 
                 //special if statement to bypass school wifi
-                if(email.equals(bypass) && pass.equals(bypass))
-                    updating();
+                //if(email.equals(bypass) && pass.equals(bypass))
+                    //updating();
 
                 //Move on with normal if statement
-                else if(!(email.isEmpty()) && !(pass.isEmpty()))
+                if(!(email.isEmpty()) && !(pass.isEmpty()))
                     signIn(email, pass);
                 else
                     Toast.makeText(EmailPasswordActivity.this, "Authentication Failed.",

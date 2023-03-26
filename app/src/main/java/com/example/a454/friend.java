@@ -28,17 +28,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class friend extends AppCompatActivity {
 
-    //Currently in work by Konnor
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend);
 
-        //Load User score
+        //firebase
         FirebaseFirestore ls = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String email = user.getEmail();
+
+        /*//load user in corner THIS HAS BEEN REMOVED DUE TO UGLINESS
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uids = user.getUid();
@@ -54,7 +60,7 @@ public class friend extends AppCompatActivity {
                     scoreText.setText(them);
                 }
             }
-        });
+        });*/
 
         //load total scoreboard
         ls.collection("Leaderboard").get()
@@ -63,27 +69,33 @@ public class friend extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             ArrayList<String> al = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()){
+                            ArrayList<String> fin = new ArrayList<>();
+                            SortedMap<Integer, String> sm = new TreeMap<Integer, String>();
+                            String name = email.split("@")[0];
+                            String end;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
                                 String us = String.valueOf((document.getData()).get("score"));
-                                if(us.length() == 1){
-                                    us = "0" + us;
-                                }
                                 String nameing = String.valueOf((document.getData().get("name")));
-                                String white = " ";
-                                String end = "";
-                                end = us + white + nameing;
+                                sm.put(Integer.parseInt(us), nameing);
+                            }
+                            for(Map.Entry<Integer, String> entry : sm.entrySet()) {
+                                String finalScore = String.valueOf(entry.getKey());
+                                String names = entry.getValue();
+                                if(name.equals(names))
+                                    end = finalScore + " " + names + "     *You*";
+                                else
+                                    end = finalScore + " " + names;
                                 al.add(end);
                             }
-                            //7 is higher then 10 since 7 is higher then 1! Does not work!
-                            al.sort(Comparator.reverseOrder());
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(friend.this, android.R.layout.simple_list_item_1, al);
+                            for(int i = al.size() - 1; i >= 0; i--)
+                                fin.add(al.get(i));
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(friend.this, android.R.layout.simple_list_item_1, fin);
                             ListView bl = findViewById(R.id.leaderboard);
                             bl.setAdapter(adapter);
                         }
                     }
                 });
-
-        //Move back to main menu
+        /*//Move back to main menu TAKEN OUT DUE TO UGLINESS
         final Button leave = findViewById(R.id.menu);
         leave.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -91,13 +103,11 @@ public class friend extends AppCompatActivity {
                 updating();
                 //adding(5);
             }
-        });
-
+        });*/
     }
-
-    //when back button pressed just move on
+    /*//when back button pressed just move on
     private void updating() {
         Intent intent = new Intent(friend.this, MainActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
