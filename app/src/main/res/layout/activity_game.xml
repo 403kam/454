@@ -5,20 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
+    android:background="@color/blue"
 
     tools:context=".GameActivity">
 
     <ImageView
         android:id="@+id/logo2"
-        android:layout_width="180dp"
-        android:layout_height="175dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="299dp"
+        android:layout_height="201dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/todo"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/screen_shot_2023_03_06_at_5_20_21_pm"
 
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,16 +40,16 @@
 
     <TextView
         android:id="@+id/gameModeSelectMessage"
-        android:layout_width="162dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="22dp"
+        android:layout_width="282dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="32dp"
         android:text="Select the Music Genre:"
         android:textAlignment="center"
         android:textColor="@color/black"
 
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appname4" />
 
@@ -57,14 +57,13 @@
         android:id="@+id/randomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="40dp"
+        android:onClick="onRandomClick"
         android:text="Random"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameModeSelectMessage"
-        android:onClick="onRandomClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/gameModeSelectMessage" />
 
     <Button
         android:id="@+id/popButton"
