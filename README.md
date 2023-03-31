@@ -11,6 +11,8 @@ This repository contains the code for a mobile application developed as a part o
 - [Installation](#installation)
 - [Usage](#usage)
 - [Answer Key](#answer-key)
+- [Project Timeline](#project-timeline)
+
 
 ### Installation
 
@@ -50,3 +52,7 @@ Here is the list of answers for the quiz in the mobile application:
 - sweet child o mine
 - i was made for loving you
 - eye of the tiger
+
+### Project Timeline
+
+https://tree.taiga.io/project/403kam-music-guesser/timeline
