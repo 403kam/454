@@ -25,8 +25,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -68,25 +72,48 @@ public class friend extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
+
+                            //Solution below is not the best way to implement
+                            //leaderboard but gets general job done for now
                             ArrayList<String> al = new ArrayList<>();
                             ArrayList<String> fin = new ArrayList<>();
-                            SortedMap<Integer, String> sm = new TreeMap<Integer, String>();
+                            SortedMap<String, Integer> sm = new TreeMap<String, Integer>();
                             String name = email.split("@")[0];
                             String end;
+
+                            //Put everthing in a map
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String us = String.valueOf((document.getData()).get("score"));
                                 String nameing = String.valueOf((document.getData().get("name")));
-                                sm.put(Integer.parseInt(us), nameing);
+                                sm.put(nameing, Integer.parseInt(us));
                             }
-                            for(Map.Entry<Integer, String> entry : sm.entrySet()) {
-                                String finalScore = String.valueOf(entry.getKey());
-                                String names = entry.getValue();
+
+                            //sort map from array list
+                            List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(sm.entrySet());
+                            Collections.sort(list, new Comparator<Map.Entry<String, Integer>>(){
+                                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2){
+                                    return(o1.getValue()).compareTo(o2.getValue());
+                                }
+                            });
+
+                            //put back into map
+                            Map<String, Integer> smFinal = new LinkedHashMap<String, Integer>();
+                            for(Map.Entry<String, Integer> entry : list){
+                              smFinal.put(entry.getKey(), entry.getValue());
+                            }
+
+                            //Put map into array to display
+                            for(Map.Entry<String, Integer> entry : smFinal.entrySet()) {
+                                String finalScore = String.valueOf(entry.getValue());
+                                String names = entry.getKey();
                                 if(name.equals(names))
                                     end = finalScore + " " + names + "     *You*";
                                 else
                                     end = finalScore + " " + names;
                                 al.add(end);
                             }
+
+                            //display
                             for(int i = al.size() - 1; i >= 0; i--)
                                 fin.add(al.get(i));
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(friend.this, android.R.layout.simple_list_item_1, fin);
