@@ -1,3 +1,4 @@
+(Note: App does not fully work as the database is shut down)
 # CIS-454: Software Implementation @ Syracuse University during Spring 2023
 
 ## Project made by: Konnor Mascara, Jon Templeton, Yunjae Jung, Matt Dickson
